@@ -14,15 +14,18 @@ namespace Raffle_Bundle
             if (Page.IsPostBack)
             {
                 Page.Validate();
+                bundles_summary.InnerHtml = "";
                 if (Page.IsValid)
                 {
+                   
                     int User_Input = Convert.ToInt32(user_input.Text);
                     bundles_summary.InnerHtml = "";
                     if (User_Input < 51) //0-50 Tickets, bundled Individually
                     {
+                        
                         double Total_cost = ((User_Input) * (0.25));
                             bundles_summary.InnerHtml += "Number of ticket(s) ordered: " + User_Input + "<br>";
-                        for (int i=1; i < 51; i++)
+                        for (int i=1; i < User_Input+1; i++)
                         {
                             bundles_summary.InnerHtml += "You received a bundle of 1! That's "+i+" tickets"+"<br>";
                         }
@@ -32,6 +35,7 @@ namespace Raffle_Bundle
                     
                     if (User_Input >50&&User_Input<151)//51 to 150 tickets, bundled in sets of 2
                     {
+                        bundles_summary.InnerHtml = "";
                         double Total_cost = ((User_Input) * (0.25));
                             bundles_summary.InnerHtml += "Number of ticket(s) ordered: " + User_Input + "<br>";
                         //checking if the are any "leftovers" using modulus
@@ -57,6 +61,7 @@ namespace Raffle_Bundle
                     
                     if (User_Input > 150 && User_Input < 301)//150 to 300 tickets, bundled in sets of 3
                     {
+                        bundles_summary.InnerHtml = "";
                         double Total_cost = ((User_Input) * (0.25));
                             bundles_summary.InnerHtml += "Number of ticket(s) ordered: " + User_Input + "<br>";
                         if (User_Input % 3 == 0)
@@ -79,6 +84,7 @@ namespace Raffle_Bundle
                     
                     if (User_Input > 300)//more then 300 tickets, bundled by 5
                     {
+                        bundles_summary.InnerHtml = "";
                         double Total_cost = ((User_Input) * (0.25));
                             bundles_summary.InnerHtml += "Number of ticket(s) ordered: " + User_Input + "<br>";
                         if (User_Input % 5 == 0)
